@@ -17,6 +17,16 @@ public class Utils {
 		return linia;			
 	}
 	
+	public static void zakonczProgram(boolean x1) throws IOException {
+		do{										
+			String zmienna3 = Utils.readLine();
+			if("t".equals(zmienna3)){
+				x1 = true;
+			} else 
+				System.out.println("Nie ma takiego polecenia.");
+		} while(x1!=true);
+	}
+	
 	public static void zapiszDoPliku(File plik, Object obiekt) throws IOException{
 		OutputStream out = new FileOutputStream(plik);
 		ObjectOutputStream objectOut = new ObjectOutputStream(out);

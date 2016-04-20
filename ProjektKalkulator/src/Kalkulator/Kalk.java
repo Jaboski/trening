@@ -66,18 +66,14 @@ public class Kalk {
 				Lista.wypiszListe(b);
 			
 		System.out.println("\nCzy chcesz zakoñczyæ dzia³anie programu? (Podaj t):");
-			boolean wyjscie = false;
-			do{										
-				String zmienna3 = Utils.readLine();
-				if("t".equals(zmienna3)){
-					wyjscie = true;
-				} else 
-					System.out.println("Nie ma takiego polecenia.");
-			} while(!wyjscie);
+			x1 = false;
+			Utils.zakonczProgram(x1);
 			
 		System.out.println("¯egnaj u¿ytkowniku.\n");
 	
 	}
+
+	
 
 	
 
