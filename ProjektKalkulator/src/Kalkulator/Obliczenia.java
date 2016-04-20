@@ -1,5 +1,6 @@
 package Kalkulator;
 
+import Kalkulator.BMRY.BMR2;
 import Kalkulator.BMRY.BMR4;
 
 public class Obliczenia {
@@ -12,6 +13,14 @@ public class Obliczenia {
 		private int dT;
 		private int dNT;
 
+		public static void obliczWynik(BMR2 p, BMR4 k, Wylicz c) {
+			c.setX(k.getBmr4()-p.getTrening());
+			c.setY((p.getTrening()*7)/3);
+			c.setWynik(c.getX()+c.getY());			
+			c.setdT((int) (c.getWynik()+300));
+			c.setdNT((int) (c.getWynik()-300));
+		}	
+		
 		public int getdT() {
 			return dT;
 		}

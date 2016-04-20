@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import Kalkulator.BMRY.BMR2;
 import Kalkulator.BMRY.BMR4;
-import Kalkulator.Trening.T;
 
 public class Trening {
 
@@ -23,93 +22,130 @@ public class Trening {
 		private short intensywnoscT;
 		public byte zero = 0;
 		
-		public static boolean okreslTreningiWTygodniu(T q, boolean x5) throws IOException {
-			byte dni = Byte.parseByte(Utils.readLine());
-				if(dni>=1 && dni <= 14){
-					x5 = true;
-					q.setDni(dni);
-				} else
-					System.out.println("WprowadŸ poprawn¹ wartoœæ.");
-			return x5;
-		}
-		
-		public static boolean okrelsCzasTreningu(T q, boolean x6) throws IOException {
-			short czasT = Short.parseShort(Utils.readLine());
-			if(czasT >= 5 && czasT <=500){
-				x6=true;
-				q.setCzasT(czasT);
-			} else
-				System.out.println("WprowadŸ poprawn¹ wartoœæ.");
-			return x6;
-		}
-		
-		public static boolean okreslIntensywnoscTreningu(T q, boolean x7) throws IOException {
-			System.out.println("\nJak intensywny jest Twój trening? (Wybierz cyfrê przyporz¹dkowan¹ do intensywnoœci Twojego treningu.)");
-			T.WypiszT();
-			byte pytanie = Byte.parseByte(Utils.readLine());
-			
-			switch(pytanie){
-			case 1: pytanie = q.getA();
-				q.setIntensywnoscT(pytanie);
-				x7=true; break;
-			case 2: pytanie = q.getB();
-				q.setIntensywnoscT(pytanie); 
-				x7=true; break;
-			case 3: pytanie = q.getC();
-				q.setIntensywnoscT(pytanie); 
-				x7=true; break;
-			}
-			return x7;
-		}
-		
-		public static void okreslCardio(T q) throws IOException {
-			boolean x8 = false;
-			int czasC;
-				do{
-					czasC = Integer.parseInt(Utils.readLine());
-					if(czasC >= 0 && czasC <= 500){
-						x8 = true;
-						q.setCzasC(czasC);
-					} else if(czasC == 0){
-						q.setIntensywnoscC(q.getZero());
+		public static boolean okreslTreningiWTygodniu(T q, boolean x1) {
+					
+			do{
+				System.out.println("Ile razy w tygodniu wykonujesz trening? (podaj cyfrê)");
+				try{	
+					byte dni = Byte.parseByte(Utils.readLine());	
+					if(dni>=1 && dni <= 14){
+						x1 = true;
+						q.setDni(dni);
 					} else
 						System.out.println("WprowadŸ poprawn¹ wartoœæ.");
-				}while(x8!=true);
-				
-				if(czasC != 0){												//jeœli czas trwania cardio = 0 tzn ¿e cardio w treningu nie wystêpuje i pomijamy pytanie o intensywnoœæ
-					boolean x = false;
-					do{
-					T.WypiszC();
-					byte pytanie2 = Byte.parseByte(Utils.readLine());
-					switch(pytanie2){
-					case 1: pytanie2 = (byte) q.getD();
-						q.setIntensywnoscC(pytanie2); 
-						x=true; break;
-					case 2: pytanie2 = (byte) q.getE();
-						q.setIntensywnoscC(pytanie2); 
-						x=true; break;
-					case 3: pytanie2 = (byte) q.getF();
-					q.setIntensywnoscC(pytanie2); 
-						x=true; break;
-					} 
-					}while(x!=true);
+				} catch(Exception e){
+					System.out.println("B³¹d. WprowadŸ cyfrê.");
 				}
+			} while(x1!=true);					
+			return x1;
 		}
 		
-		public static boolean okreslCel(BMR2 p, BMR4 k, boolean x9) throws IOException {
+		public static boolean okrelsCzasTreningu(T q, boolean x1) {		
+			do{
+				System.out.println("Ile czasu trwa Twój trening? (podaj liczbê w minutach)");
+				try{
+					short czasT = Short.parseShort(Utils.readLine());
+					if(czasT >= 5 && czasT <=500){
+						x1=true;
+						q.setCzasT(czasT);
+					} else
+						System.out.println("WprowadŸ poprawn¹ wartoœæ.");
+				} catch(Exception e){
+					System.out.println("B³¹d. WprowadŸ cyfrê.");
+				}
+			} while(x1!=true);				
+			return x1;
+		}
+		
+		public static boolean okreslIntensywnoscTreningu(T q, boolean x1) {
+			do{				
+				System.out.println("\nJak intensywny jest Twój trening? (Wybierz cyfrê przyporz¹dkowan¹ do intensywnoœci Twojego treningu.)");
+				T.WypiszT();
+				try{
+					byte pytanie = Byte.parseByte(Utils.readLine());				
+					switch(pytanie){
+					case 1: pytanie = q.getA();
+						q.setIntensywnoscT(pytanie);
+						x1=true; break;
+					case 2: pytanie = q.getB();
+						q.setIntensywnoscT(pytanie); 
+						x1=true; break;
+					case 3: pytanie = q.getC();
+						q.setIntensywnoscT(pytanie); 
+						x1=true; break;
+					}
+				} catch(Exception e){
+					System.out.println("B³¹d. WprowadŸ cyfrê.");
+				}
+			} while(x1!=true);			
+			return x1;
+		}
+		
+		public static boolean okreslCardio(T q, boolean x1) {			
+			int czasC1;
+				do{
+					System.out.println("Ile czasu trwa Twoje cardio? (Podaj liczbê w minutach. Je¿eli nie wykonujesz cardio wpisz 0.)");	
+					try{
+						czasC1 = Integer.parseInt(Utils.readLine());
+						if(czasC1 >= 0 && czasC1 <= 500){
+							x1 = true;
+							q.setCzasC(czasC1);
+						} else if(czasC1 == 0){
+							q.setIntensywnoscC(q.getZero());
+						} else
+							System.out.println("WprowadŸ poprawn¹ wartoœæ.");
+					} catch(Exception e){
+							System.out.println("B³¹d. WprowadŸ cyfrê.");
+						}
+				}while(x1!=true);
+				
+				if(q.getCzasC() != 0){		//jeœli czas trwania cardio = 0 tzn ¿e cardio w treningu nie wystêpuje i pomijamy pytanie o intensywnoœæ
+					x1 = false;
+					do{
+						try{
+							T.WypiszC();
+							byte pytanie2 = Byte.parseByte(Utils.readLine());
+							switch(pytanie2){
+							case 1: pytanie2 = (byte) q.getD();
+								q.setIntensywnoscC(pytanie2); 
+								x1=true; break;
+							case 2: pytanie2 = (byte) q.getE();
+								q.setIntensywnoscC(pytanie2); 
+								x1=true; break;
+							case 3: pytanie2 = (byte) q.getF();
+							q.setIntensywnoscC(pytanie2); 
+								x1=true; break;
+							} 
+						} catch(Exception e){
+							System.out.println("B³¹d. WprowadŸ cyfrê.");
+						}
+					}while(x1!=true);
+				}
+				return x1;
+		}
+		
+		public static boolean okreslCel(BMR2 p, BMR4 k, boolean x1) throws IOException {
 			String zmienna3;
-			zmienna3 = Utils.readLine();
-			if("1".equals(zmienna3)){						
-				k.setBmr4(p.getBmr3()-400);
-				x9 = true;
-			} else 
-				if("2".equals(zmienna3)){
-					k.setBmr4(p.getBmr3()+400);
-					x9 = true;						
-			} else {
-				System.out.println("Wprowadz w³aœciw¹ cyfrê.");
-			}
-			return x9;
+			do{
+				System.out.println("Okreœl swój cel:\n"+
+						"Chcê straciæ na wadze. (Wybierz cyfrê 1)\n"+
+						"Chcê przybraæ na wadze. (Wybierz cyfrê 2)");	
+				try{
+				zmienna3 = Utils.readLine();
+				if("1".equals(zmienna3)){						
+					k.setBmr4(p.getBmr3()-400);
+					x1 = true;
+				} else 
+					if("2".equals(zmienna3)){
+						k.setBmr4(p.getBmr3()+400);
+						x1 = true;						
+				} else
+					System.out.println("Wprowadz w³aœciw¹ cyfrê.");
+				} catch(Exception e){
+					System.out.println("B³¹d. WprowadŸ cyfrê.");
+				}
+			} while(x1!=true);			
+			return x1;
 		}
 
 		public static void WypiszT(){
@@ -117,12 +153,8 @@ public class Trening {
 		tab[0]= "1. Umiarkowana intensywnoœæ ";
 		tab[1]= "2. Œrednia intensywnoœæ ";
 		tab[2]= "3. Wysoka intensywnoœæ ";
-		/*tab[0][1]= "8kcal/min";
-		tab[1][1]= "    10kcal/min";
-		tab[2][1]= "     12kcal/min";*/
 		
 			for(int i=0; i<3; i++){
-				//for(int j=0; j<2; j++){
 				System.out.print(tab[i]);
 			System.out.println();
 			}
@@ -130,18 +162,13 @@ public class Trening {
 		
 		public static void WypiszC(){
 			System.out.println("\n Wybierz cyfrê przyporz¹dkowan¹ do intensywnoœci Twojego cardio.");
-			String tab[][] = new String[3][2];
-			tab[0][0]= "1. HR do 120/min ";
-			tab[1][0]= "2. HR 120-160/min ";
-			tab[2][0]= "3. HR >160/min ";
-			tab[0][1]= "5kcal/min";
-			tab[1][1]= "10kcal/min";
-			tab[2][1]= "12kcal/min";
+			String tab[] = new String[3];
+			tab[0]= "1. Umiarkowana intensywnoœæ (Têtno do 120 uderzeñ/min) ";
+			tab[1]= "2. Œrednia intensywnoœæ (Têtno od 120 do 160 uderzeñ/min) ";
+			tab[2]= "3. Wysoka intensywnoœæ (Têtno powy¿ej 160 uderzeñ/min) ";
 					
-			for(int i=0; i<3; i++){
-				for(int j=0; j<2; j++){
-				System.out.print(tab[i][j]);
-				}
+			for(int i=0; i<3; i++){				
+				System.out.print(tab[i]);				
 			System.out.println();
 			}
 		}
