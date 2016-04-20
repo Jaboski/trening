@@ -1,5 +1,7 @@
 package Kalkulator;
 
+import Kalkulator.Trening.T;
+
 public class BMRY {
 	
 	
@@ -7,6 +9,10 @@ public class BMRY {
 		private double masaCiala;
 		private int wzrost;
 		private int wiek;
+		
+		public static double wyliczBmr(BMR o) {
+			return 9.99*o.getMasaCiala()+(6.25*o.getWzrost())-(4.92*o.getWiek())+5;
+		}
 		
 		public static boolean podajMaseCiala(BMR o, boolean x1) {
 			do{
@@ -84,6 +90,11 @@ public class BMRY {
 		private double bmr3;
 		private double bmr2;
 		private double trening;
+		
+		public static void wyliczBmr3(BMR2 p, T q) {
+			p.setTrening((q.getDni()* q.getCzasT()* q.getIntensywnoscT() + q.getDni()* q.getCzasC()* q.getIntensywnoscC())/7);
+			p.setBmr3((p.getBmr2()+p.getTrening())+((p.getBmr2()+p.getTrening())*0.1));
+		}
 		
 		public static boolean okreslSylwetke(BMR2 p, boolean x1) {
 			double zmienna2;

@@ -23,7 +23,7 @@ public class Kalk {
 		x1 = false;			
 				x1 = BMR.podajWiek(o, x1);
 						
-		double bmr =(9.99*o.getMasaCiala()+(6.25*o.getWzrost())-(4.92*o.getWiek())+5);
+				double bmr = BMR.wyliczBmr(o);
 		//System.out.println(bmr);
 		
 		BMR2 p = new BMR2();		
@@ -31,7 +31,7 @@ public class Kalk {
 		x1 = false; 
 			x1 = BMR2.okreslSylwetke(p, x1);
 			
-		p.setBmr2(bmr + p.getSylwetka());
+			p.setBmr2(bmr + p.getSylwetka());
 		//System.out.println(p.getBmr2());
 		
 		T q = new T();
@@ -48,8 +48,7 @@ public class Kalk {
 		x1 = false;			
 			T.okreslCardio(q, x1);
 			
-		p.setTrening((q.getDni()* q.getCzasT()* q.getIntensywnoscT() + q.getDni()* q.getCzasC()* q.getIntensywnoscC())/7);
-		p.setBmr3((p.getBmr2()+p.getTrening())+((p.getBmr2()+p.getTrening())*0.1));	
+			BMR2.wyliczBmr3(p, q);	
 		//System.out.println(p.getBmr3());
 		
 		BMR4 k = new BMR4();
@@ -72,6 +71,10 @@ public class Kalk {
 		System.out.println("¯egnaj u¿ytkowniku.\n");
 	
 	}
+
+	
+
+	
 
 	
 
